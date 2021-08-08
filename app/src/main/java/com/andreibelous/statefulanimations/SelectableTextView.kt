@@ -61,13 +61,7 @@ class SelectableTextView
         }
     }
 
-    fun bind(
-        text: CharSequence,
-        isSelected: Boolean
-    ) {
-        if (this.text != text) {
-            this.text = text
-        }
+    fun bind(isSelected: Boolean) {
         animatedBackgroundColor.value = if (isSelected) Color.BLACK else Color.LTGRAY
         animatedTextColor.value = if (isSelected) Color.WHITE else Color.BLACK
         animatedScale.value = if (isSelected) 1.2f else 1f
