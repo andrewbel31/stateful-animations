@@ -44,7 +44,12 @@ class AnimatedValue<T>(
         with(animator) {
             val playedTime = currentPlayTime
             cancel()
-            duration = spec.duration - playedTime
+            duration = if (playedTime > 0) {
+                playedTime
+            } else {
+                spec.duration
+            }
+
             start()
         }
     }

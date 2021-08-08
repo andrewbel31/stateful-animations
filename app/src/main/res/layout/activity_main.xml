@@ -58,4 +58,13 @@
         app:layout_constraintStart_toEndOf="@+id/tab2"
         app:layout_constraintTop_toTopOf="@id/tab1" />
 
+    <View
+        android:id="@+id/circle"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintEnd_toEndOf="@id/tab1"
+        app:layout_constraintStart_toStartOf="@id/tab1"
+        app:layout_constraintTop_toBottomOf="@id/tab1" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
