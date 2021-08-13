@@ -10,12 +10,21 @@ import android.view.animation.LinearInterpolator
 import android.view.animation.OvershootInterpolator
 import androidx.appcompat.widget.AppCompatTextView
 
-class SelectableTextView
+class SelectableChipView
 @JvmOverloads constructor(
     context: Context,
     attributeSet: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : AppCompatTextView(context, attributeSet, defStyleAttr) {
+
+    init {
+        clipToOutline = true
+        outlineProvider = object : ViewOutlineProvider() {
+            override fun getOutline(view: View, outline: Outline) {
+                outline.setRoundRect(0, 0, view.width, view.height, 20f)
+            }
+        }
+    }
 
     private var animatedTextColor =
         animatedColor(
@@ -50,16 +59,6 @@ class SelectableTextView
             scaleX = it
             scaleY = it
         }
-
-
-    init {
-        clipToOutline = true
-        outlineProvider = object : ViewOutlineProvider() {
-            override fun getOutline(view: View, outline: Outline) {
-                outline.setRoundRect(0, 0, view.width, view.height, 20f)
-            }
-        }
-    }
 
     fun bind(isSelected: Boolean) {
         animatedBackgroundColor.value = if (isSelected) Color.BLACK else Color.LTGRAY

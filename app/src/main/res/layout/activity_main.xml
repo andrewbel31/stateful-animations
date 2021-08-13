@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <com.andreibelous.statefulanimations.SelectableTextView
+    <com.andreibelous.statefulanimations.SelectableChipView
         android:id="@+id/tab1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.andreibelous.statefulanimations.SelectableTextView
+    <com.andreibelous.statefulanimations.SelectableChipView
         android:id="@+id/tab2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
         app:layout_constraintStart_toEndOf="@+id/tab1"
         app:layout_constraintTop_toTopOf="@id/tab1" />
 
-    <com.andreibelous.statefulanimations.SelectableTextView
+    <com.andreibelous.statefulanimations.SelectableChipView
         android:id="@+id/tab3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

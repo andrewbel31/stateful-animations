@@ -60,13 +60,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val tab1 = findViewById<SelectableTextView>(R.id.tab1).apply {
+        val tab1 = findViewById<SelectableChipView>(R.id.tab1).apply {
             bind(false)
         }
-        val tab2 = findViewById<SelectableTextView>(R.id.tab2).apply {
+        val tab2 = findViewById<SelectableChipView>(R.id.tab2).apply {
             bind(false)
         }
-        val tab3 = findViewById<SelectableTextView>(R.id.tab3).apply {
+        val tab3 = findViewById<SelectableChipView>(R.id.tab3).apply {
             bind(false)
         }
 
