@@ -14,7 +14,9 @@ fun animatedColor(
     return AnimatedValue(
         initial = initial,
         spec = animationSpec,
-        evaluation = { fraction, start, end -> evaluator.evaluate(fraction, start, end) as Int },
+        evaluation = { fraction, start, end ->
+            evaluator.evaluate(fraction, start, end) as Int
+        },
         updateCallback = updateListener
     )
 }

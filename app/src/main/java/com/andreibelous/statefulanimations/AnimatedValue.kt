@@ -13,7 +13,7 @@ class AnimatedValue<T>(
     private var animator = ValueAnimator.ofFloat(0f, 1f).apply {
         duration = spec.duration
         interpolator = spec.interpolator
-        addUpdateListener { currentValue = evaluation(it.animatedFraction, prevValue, value) }
+        addUpdateListener { currentValue = evaluation(it.animatedFraction, startValue, value) }
     }
 
     init {
@@ -24,23 +24,20 @@ class AnimatedValue<T>(
         set(value) {
             if (field != value) {
                 field = value
-                animate(value)
+                animate()
             }
         }
 
-    private var prevValue: T = value
+    private var startValue: T = initial
 
     private var currentValue: T = initial
         set(value) {
-            if (field != value) {
-                field = value
-                updateCallback(value)
-            }
+            field = value
+            updateCallback(value)
         }
 
-    private fun animate(target: T) {
-        if (currentValue == target) return // no animation needed in this case
-        prevValue = currentValue
+    private fun animate() {
+        startValue = currentValue
         animator.cancel()
         animator.start()
     }
