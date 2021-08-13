@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
 
         val button2 = findViewById<Button>(R.id.button2).apply {
             setOnClickListener {
-                animatedProgress.value = (animatedProgress.value - 20).coerceAtLeast(0)
+                animatedProgress.value = (animatedProgress.value + 20).coerceAtLeast(0)
             }
         }
 
