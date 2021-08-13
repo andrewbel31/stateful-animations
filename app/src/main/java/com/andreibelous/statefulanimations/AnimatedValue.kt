@@ -1,6 +1,7 @@
 package com.andreibelous.statefulanimations
 
 import android.animation.ValueAnimator
+import kotlin.reflect.KProperty
 
 class AnimatedValue<T>(
     initial: T,
@@ -40,22 +41,20 @@ class AnimatedValue<T>(
     private fun animate(target: T) {
         if (currentValue == target) return // no animation needed in this case
         prevValue = currentValue
-
-        with(animator) {
-            val playedTime = currentPlayTime
-            cancel()
-            duration = if (playedTime > 0) {
-                playedTime
-            } else {
-                spec.duration
-            }
-
-            start()
-        }
+        animator.cancel()
+        animator.start()
     }
 
     fun dispose() {
         animator.cancel()
         animator.removeAllListeners()
     }
+}
+
+@Suppress("NOTHING_TO_INLINE")
+inline operator fun <T> AnimatedValue<T>.getValue(thisObj: Any?, property: KProperty<*>): T = value
+
+@Suppress("NOTHING_TO_INLINE")
+inline operator fun <T> AnimatedValue<T>.setValue(thisObj: Any?, property: KProperty<*>, value: T) {
+    this.value = value
 }

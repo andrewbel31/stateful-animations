@@ -6,7 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.ViewOutlineProvider
+import android.view.animation.LinearInterpolator
 import android.view.animation.OvershootInterpolator
+import android.widget.Button
+import com.google.android.material.progressindicator.LinearProgressIndicator
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,14 +25,39 @@ class MainActivity : AppCompatActivity() {
             }
             setBackgroundColor(Color.RED)
         }
-        val centerCircle = animatedFloat(
-            0f,
+        val centerCircle =
+            animatedFloat(
+                0f,
+                animationSpec = AnimationSpec(
+                    300,
+                    interpolator = OvershootInterpolator()
+                )
+            ) {
+                circle.x = it
+            }
+
+        val progress = findViewById<LinearProgressIndicator>(R.id.progress)
+
+        val animatedProgress = animatedInt(
+            initial = 0,
             animationSpec = AnimationSpec(
-                300,
-                interpolator = OvershootInterpolator()
-            )
+                duration = 300,
+                interpolator = LinearInterpolator()
+            ),
         ) {
-            circle.x = it
+            progress.progress = it
+        }
+
+        val button1 = findViewById<Button>(R.id.button1).apply {
+            setOnClickListener {
+                animatedProgress.value = (animatedProgress.value - 20).coerceAtLeast(0)
+            }
+        }
+
+        val button2 = findViewById<Button>(R.id.button2).apply {
+            setOnClickListener {
+                animatedProgress.value = (animatedProgress.value - 20).coerceAtLeast(0)
+            }
         }
 
         val tab1 = findViewById<SelectableTextView>(R.id.tab1).apply {
@@ -63,6 +91,5 @@ class MainActivity : AppCompatActivity() {
             centerCircle.value = tab3.x + tab3.width / 2 - circle.width / 2
 
         }
-
     }
 }
